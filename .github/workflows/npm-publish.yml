@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    if: ${{ github.event.release.target_commitish != 'master' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,6 +25,7 @@ jobs:
       - run: bun run test
 
   publish-npm:
+    if: ${{ github.event.release.target_commitish != 'master' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -35,10 +37,18 @@ jobs:
       - run: bun install
       - name: Build
         run: bun run build
+      - name: Check NPM token is configured
+        if: ${{ secrets.NPM_TOKEN == '' }}
+        run: |
+          echo "NPM_TOKEN secret is not set. Add it in Settings > Secrets and variables > Actions." >&2
+          exit 1
       - name: Configure npm auth
         run: |
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Verify npm auth
+        run: npm whoami
       - name: Publish to npm with Bun
-        run: bun publish --access public
+        run: bun publish --access public --registry https://registry.npmjs.org/
