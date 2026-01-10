@@ -1,5 +1,5 @@
 # create-bite <a href="https://npmjs.com/package/create-bite"><img src="https://img.shields.io/npm/v/create-bite" alt="npm package"></a>
-
+[![Node.js Package](https://github.com/Sumangal44/create-bite/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/Sumangal44/create-bite/actions/workflows/npm-publish.yml)
 > Zero-config scaffolder for modern web apps. Pick a framework + template and get a ready-to-run project in seconds.
 
 - Interactive prompts with pretty, colorful UI
