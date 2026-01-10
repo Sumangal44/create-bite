@@ -52,3 +52,5 @@ jobs:
         run: npm whoami
       - name: Publish to npm with Bun
         run: bun publish --access public --registry https://registry.npmjs.org/
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
