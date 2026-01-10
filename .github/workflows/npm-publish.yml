@@ -32,11 +32,6 @@ jobs:
       - run: npm ci
       - name: Build
         run: npm run build
-      - name: Check NPM token is configured
-        if: ${{ secrets.NPM_TOKEN == '' }}
-        run: |
-          echo "NPM_TOKEN secret is not set. Create an npm automation token in npm and add it as a repository secret named NPM_TOKEN (Settings > Secrets and variables > Actions)." >&2
-          exit 1
       - run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
