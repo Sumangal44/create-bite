@@ -1,6 +1,6 @@
 {
   "name": "create-bite",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "license": "MIT",
   "author": "sumangal karan",
@@ -49,6 +49,5 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
-    
   }
 }
